@@ -13,69 +13,62 @@
   <link rel="canonical"           href="https://terminaldeofertas.github.io">
   <style>
   :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --border: #30363d;
-    --green: #3fb950;
-    --green-dim: #238636;
-    --text: #e6edf3;
-    --muted: #8b949e;
-    --card-bg: #161b22;
-    --radius: 12px;
+    --bg: #0d1117; --bg2: #161b22; --border: #30363d;
+    --green: #3fb950; --green-dim: #238636;
+    --orange: #f78166; --shopee: #ee4d2d;
+    --text: #e6edf3; --muted: #8b949e; --radius: 12px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; }
 
-  /* Header */
   header { background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); border-bottom: 1px solid var(--border); padding: 2rem 1rem; text-align: center; }
   header h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--green); letter-spacing: -0.5px; }
   header p  { color: var(--muted); margin-top: .4rem; }
   .stamp    { display: inline-block; margin-top: .8rem; font-size: .75rem; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: .2rem .8rem; }
 
-  /* Layout */
   main { max-width: 1280px; margin: 0 auto; padding: 2rem 1rem 4rem; }
   section { margin-bottom: 3rem; }
   section > h2 { font-size: 1.2rem; color: var(--text); border-left: 3px solid var(--green); padding-left: .75rem; margin-bottom: 1.25rem; }
+  section.shopee-sec > h2 { border-left-color: var(--shopee); }
 
-  /* Grid */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
 
-  /* Card */
-  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .15s, border-color .15s; position: relative; }
+  .card { background: #161b22; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .15s, border-color .15s; position: relative; }
   .card:hover { transform: translateY(-3px); border-color: var(--green-dim); }
+  .card--shopee:hover { border-color: var(--shopee); }
   .card a { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
   .card-img { aspect-ratio: 1/1; background: #0d1117; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .card-img img { width: 100%; height: 100%; object-fit: cover; }
   .no-img { font-size: 3rem; }
-  .card-body { padding: .85rem; display: flex; flex-direction: column; gap: .4rem; flex: 1; }
+  .card--campaign .card-img { aspect-ratio: 16/9; }
+  .card-body { padding: .85rem; display: flex; flex-direction: column; gap: .35rem; flex: 1; }
   .card-body h3 { font-size: .82rem; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .price { font-size: 1rem; font-weight: 700; color: var(--green); margin-top: auto; }
+  .card--shopee .price { color: var(--shopee); }
+  .original-price { font-size: .75rem; color: var(--muted); text-decoration: line-through; }
+  .rating { font-size: .75rem; color: var(--muted); }
+  .discount-badge { position: absolute; top: .5rem; left: .5rem; background: var(--shopee); color: #fff; border-radius: 6px; font-size: .7rem; font-weight: 700; padding: .15rem .4rem; z-index: 1; }
   .coupon-code { font-size: .8rem; background: #1f2937; border: 1px dashed var(--green-dim); border-radius: 6px; padding: .3rem .5rem; color: var(--green); }
   .expiry { font-size: .75rem; color: var(--muted); }
+  .card-badge { position: absolute; top: .5rem; right: .5rem; background: rgba(13,17,23,.85); border: 1px solid var(--border); border-radius: 20px; font-size: .7rem; padding: .15rem .5rem; color: var(--text); backdrop-filter: blur(4px); }
   .btn { display: block; text-align: center; background: var(--green-dim); color: #fff; border-radius: 6px; padding: .45rem; font-size: .8rem; font-weight: 600; margin-top: auto; transition: background .15s; }
   .card:hover .btn { background: var(--green); }
-  .card-badge { position: absolute; top: .5rem; right: .5rem; background: rgba(13,17,23,.85); border: 1px solid var(--border); border-radius: 20px; font-size: .7rem; padding: .15rem .5rem; color: var(--text); backdrop-filter: blur(4px); }
-  .card--campaign .card-img { aspect-ratio: 16/9; }
+  .btn--shopee { background: var(--shopee); }
+  .card--shopee:hover .btn--shopee { background: #d44000; }
 
-  /* Footer */
   footer { text-align: center; padding: 2rem 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .8rem; line-height: 1.8; }
   footer a { color: var(--green); text-decoration: none; }
-
-  /* Aviso */
   .aviso { background: #161b22; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: var(--muted); }
 
-  @media (max-width: 480px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  @media (max-width: 480px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
   <header>
     <h1>💻 Terminal de Ofertas</h1>
     <p>As melhores promoções selecionadas automaticamente</p>
-    <span class="stamp">Atualizado em 11/04/2026 às 16:01 &bull; 112 ofertas</span>
+    <span class="stamp">Atualizado em 11/04/2026 às 13:40 &bull; 232 ofertas</span>
   </header>
-
   <main>
     
     <section id="campanhas">
@@ -323,125 +316,590 @@
       </article></div>
     </section>
     
+    <section id="shopee" class="shopee-sec">
+      <h2>🛍️ Ofertas Shopee</h2>
+      <div class="grid">
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F239158067%2F24061728699&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-50%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rcdg-lr5q2cdw38wp9f" alt="Vnox Vintage Colar De Nó Celta , Pingente Talismã Nórdico De Aço Inoxidável Não Desbotado " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Vnox Vintage Colar De Nó Celta , Pingente Talismã Nórdico De Aço Inoxidável Não Desbotado </h3>
+            <span class="rating">⭐ 4.7</span>
+            <span class="original-price">R$ 44,48</span>
+            <p class="price">R$ 22,24</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F1137412789%2F23292782541&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-53%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-lqtccr72c27bda" alt="Kit 10 Lâmpada Filamento LED G95 4W E27 LUZ QUENTE (AMARELO) Âmbar Retrô Vintage 110V~220V" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Kit 10 Lâmpada Filamento LED G95 4W E27 LUZ QUENTE (AMARELO) Âmbar Retrô Vintage 110V~220V</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 360,00</span>
+            <p class="price">R$ 169,50</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F373289765%2F58200272325&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-21%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-81z1k-mglodll634lgf7" alt="Contos de Fadas Indianos | Joseph Jacobs | Brochura" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Contos de Fadas Indianos | Joseph Jacobs | Brochura</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 18,90</span>
+            <p class="price">R$ 14,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F560644869%2F42759047481&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-36%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rdw0-mccmqdw8piw08f" alt="Kit 6un Sabonetes Em Barra Phebo Limão Siciliano Com 100g" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Kit 6un Sabonetes Em Barra Phebo Limão Siciliano Com 100g</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 63,39</span>
+            <p class="price">R$ 40,29</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F872473112%2F21160747148&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-23%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-22110-k0vdms94zbkvd1" alt="Cozinha Completa Madesa Agata 270002 com Armário e Balcão (Com Tampo) - Branco/Cinza" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Cozinha Completa Madesa Agata 270002 com Armário e Balcão (Com Tampo) - Branco/Cinza</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 2.819,99</span>
+            <p class="price">R$ 2.163,03</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F380531074%2F22893492376&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-25%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-81ztc-mjfobzsgl6gxad" alt="Quando o Céu Toca o Chão - Rubinho Pirola" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Quando o Céu Toca o Chão - Rubinho Pirola</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 32,04</span>
+            <p class="price">R$ 23,88</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F464326997%2F21699650788&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-42%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rd6x-m7onggftih8ne5" alt="JOGO DE TABULEIRO SUSPEITO PAIS E FILHOS BRINQUEDO DETETIVE INVESTIGADOR MISTÉRIOS MESA FA" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>JOGO DE TABULEIRO SUSPEITO PAIS E FILHOS BRINQUEDO DETETIVE INVESTIGADOR MISTÉRIOS MESA FA</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 119,97</span>
+            <p class="price">R$ 69,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F426378412%2F27210256672&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-28%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-8260z-mkhzk0m7u7eq57" alt="Lovito Vestido Elegante Com Botão Liso E Cinto Frontal Para Mulheres LBL16404" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Lovito Vestido Elegante Com Botão Liso E Cinto Frontal Para Mulheres LBL16404</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 90,90</span>
+            <p class="price">R$ 65,10</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F555452587%2F13537143540&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-40%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-m6phl5jiqmvbf0" alt="Shampoo Hidratante Para Cabelos Ressecados E Secos- Hidratei" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Shampoo Hidratante Para Cabelos Ressecados E Secos- Hidratei</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 109,90</span>
+            <p class="price">R$ 65,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F789777799%2F23093934197&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-16%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7reqi-m8z54x113r3b8d" alt="Balcão Multiuso Isis Simples 1 Porta 1 Gaveta Freijo com Off White Nicioli" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Balcão Multiuso Isis Simples 1 Porta 1 Gaveta Freijo com Off White Nicioli</h3>
+            <span class="rating">⭐ 4.8</span>
+            <span class="original-price">R$ 215,48</span>
+            <p class="price">R$ 179,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F281898655%2F22992747362&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-39%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-m8ow81b1mvb617" alt="Jogo 12 Colher Sobremesa Restaurante Buffet Premium Conjunto Aço Inox Continental Original" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jogo 12 Colher Sobremesa Restaurante Buffet Premium Conjunto Aço Inox Continental Original</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 64,90</span>
+            <p class="price">R$ 39,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F882691919%2F20056038726&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-23%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134201-23030-pnyxn3rqqvovcc" alt="Pneu Ira 80/100-18 M/c Tl Masked Dianteiro Sem câmara CG/Titan/Fan 125,150,160 Ybr 125 Fac" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Pneu Ira 80/100-18 M/c Tl Masked Dianteiro Sem câmara CG/Titan/Fan 125,150,160 Ybr 125 Fac</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 183,83</span>
+            <p class="price">R$ 140,74</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F349198275%2F40761645527&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-31%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rdyw-md243yoj5cqf6a" alt="Camiseta Infantil Juvenil UV Manga Longa Estampada Mash" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Camiseta Infantil Juvenil UV Manga Longa Estampada Mash</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 129,99</span>
+            <p class="price">R$ 89,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F375188138%2F23897069731&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-29%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rdyl-ly3q331vi5tf37" alt="Poltrona de Amamentação com Balanço e Puff Lívia Linho Cinza Escuro  - Phoenix" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Poltrona de Amamentação com Balanço e Puff Lívia Linho Cinza Escuro  - Phoenix</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 788,53</span>
+            <p class="price">R$ 559,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F500017527%2F54657810133&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-54%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-820mb-mmbtwugt7xtsaa" alt="Bumbum Cream 200g Creme Tratamento Redutor Celulite Estrias Hidratante Ação Termogênica" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Bumbum Cream 200g Creme Tratamento Redutor Celulite Estrias Hidratante Ação Termogênica</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 257,90</span>
+            <p class="price">R$ 119,00</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F535071110%2F23398569206&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-32%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7raus-malorl9wqt0168" alt="Sapatênis Democrata Denim Clash Masculino" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Sapatênis Democrata Denim Clash Masculino</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 354,84</span>
+            <p class="price">R$ 239,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F1045085918%2F23093839094&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-24%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rd3r-m7kwfu7ouohk44" alt="Kit 3 Und Massageol Aero 120ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Kit 3 Und Massageol Aero 120ml</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 78,98</span>
+            <p class="price">R$ 59,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F322434863%2F22993667090&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-38%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rbnh-m5ei3vps10ew3d" alt="Acquaflora Sol Mar Piscina - Máscara Capilar 250g" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Acquaflora Sol Mar Piscina - Máscara Capilar 250g</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 88,99</span>
+            <p class="price">R$ 54,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F411060907%2F19299381007&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-30%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-m024kt6pt01588" alt="Fonte 120 Amperes Caixas BOB Usina Bivolt Automático Fonte Som Automotivo" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Fonte 120 Amperes Caixas BOB Usina Bivolt Automático Fonte Som Automotivo</h3>
+            <span class="rating">⭐ 4.6</span>
+            <span class="original-price">R$ 699,99</span>
+            <p class="price">R$ 489,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F1333507062%2F22798712099&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-35%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rdwt-mc15v5kq3wzn9b" alt="Organizador De Talheres Faca Suporte De Tampa Com Escorredor" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Organizador De Talheres Faca Suporte De Tampa Com Escorredor</h3>
+            <span class="rating">⭐ 4.8</span>
+            <span class="original-price">R$ 99,52</span>
+            <p class="price">R$ 64,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F436682589%2F9853949121&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-28%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-7qukw-liadflnn9h1b0b" alt="Capacete Fechado Automático Pro Tork Sport Moto 788" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Capacete Fechado Automático Pro Tork Sport Moto 788</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 136,74</span>
+            <p class="price">R$ 97,79</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F493729464%2F22797770719&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-47%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rdwd-m01xzktlh5qh26" alt="LOMISS Piercing Septril Rook Conch Nariz Argola Titânio Segmento Articulado Zircônia Crave" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>LOMISS Piercing Septril Rook Conch Nariz Argola Titânio Segmento Articulado Zircônia Crave</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 159,98</span>
+            <p class="price">R$ 84,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F426378412%2F26941075678&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-30%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-824j4-me6ytnlqu96s87" alt="(NEW) Lovito Vestido Elegante com Zíper para Primavera/verão Cor Caqui para mulheres L152L" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>(NEW) Lovito Vestido Elegante com Zíper para Primavera/verão Cor Caqui para mulheres L152L</h3>
+            <span class="rating">⭐ 4.8</span>
+            <span class="original-price">R$ 73,90</span>
+            <p class="price">R$ 51,50</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F898761179%2F23194693894&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-47%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-821e0-mh85n4j9qxag6e" alt="Panela de Pressão Digital Elgin Multi Cook 5l 127v Preta" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Panela de Pressão Digital Elgin Multi Cook 5l 127v Preta</h3>
+            <span class="rating">⭐ 4.8</span>
+            <span class="original-price">R$ 587,51</span>
+            <p class="price">R$ 311,00</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F457864097%2F44004246202&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-67%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134207-7rasx-mawb63iwm1lc46" alt="It's Skin Seven Peptide Collagen Cream 50ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>It's Skin Seven Peptide Collagen Cream 50ml</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 189,84</span>
+            <p class="price">R$ 62,00</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F869809385%2F23097705975&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-70%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7ra3y-m4sfuziom3eobb" alt="Aerador Elétrico Wolff Aço Inox para Vinho Realça Aroma e Sabor" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Aerador Elétrico Wolff Aço Inox para Vinho Realça Aroma e Sabor</h3>
+            <span class="rating">⭐ 4.9</span>
+            <span class="original-price">R$ 125,00</span>
+            <p class="price">R$ 36,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F801641954%2F23794166643&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-62%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-8262k-mlp9x97lygb3ab" alt="Cooler para Notebook Asus Vivobook X515J" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Cooler para Notebook Asus Vivobook X515J</h3>
+            <span class="rating">⭐ 4.5</span>
+            <span class="original-price">R$ 103,90</span>
+            <p class="price">R$ 40,00</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F920605202%2F21899558944&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-42%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-81zu3-mmj3amv9vr48b0" alt="Sandália Kenner Kivah Pro Cushy" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Sandália Kenner Kivah Pro Cushy</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 309,89</span>
+            <p class="price">R$ 179,88</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F442439073%2F18697690458&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-25%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rd5g-lw5xnsy2n4xp7c" alt="Grade Vectra 2006 2007 2008 Cinza Com Friso Cromado" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Grade Vectra 2006 2007 2008 Cinza Com Friso Cromado</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 212,49</span>
+            <p class="price">R$ 159,37</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F1461936230%2F23893347079&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-42%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rd45-m7ro2z3ozjsh0c" alt="HONEYWHALE T4A Patinete Elétrico Dobrável Scooter 750W (MAX), Velocidade 45 KM/H, 35 KM Au" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>HONEYWHALE T4A Patinete Elétrico Dobrável Scooter 750W (MAX), Velocidade 45 KM/H, 35 KM Au</h3>
+            <span class="rating">⭐ 4.7</span>
+            <span class="original-price">R$ 8.331,67</span>
+            <p class="price">R$ 4.849,00</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F344415614%2F50154972931&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-28%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-81zu3-mkv22z48t4hs94" alt="Sandália Feminina Moleca Rasteirinha Confortável Leve Moda Verão Casual Moderno" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Sandália Feminina Moleca Rasteirinha Confortável Leve Moda Verão Casual Moderno</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 89,90</span>
+            <p class="price">R$ 64,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F336042646%2F22915600549&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-20%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134201-23010-i0guyytuislv82" alt="Kit 3 Calças de Moletom de Algodão Felpado Esportiva Bolsos" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Kit 3 Calças de Moletom de Algodão Felpado Esportiva Bolsos</h3>
+            <span class="rating">⭐ 4.5</span>
+            <span class="original-price">R$ 169,90</span>
+            <p class="price">R$ 135,92</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F869809385%2F54105496438&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-17%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-8262h-mk15gj1yw1z67d" alt="50 Formas Lyor para Air Fryer Descartável de Papel 16cm" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>50 Formas Lyor para Air Fryer Descartável de Papel 16cm</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 24,00</span>
+            <p class="price">R$ 19,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F856641146%2F19198987203&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-54%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/br-11134207-81ztc-mjo3dm615i4i90" alt="Espelho Orgânico Moderno Decoração Lavabo Banheiro 80x60cm Moldura em Couro Ecológico 3cm" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Espelho Orgânico Moderno Decoração Lavabo Banheiro 80x60cm Moldura em Couro Ecológico 3cm</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 248,90</span>
+            <p class="price">R$ 114,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F322434863%2F23798407185&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-38%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7renh-m8wlznhxfox311" alt="MQ Professional Titanium Azul - Prancha de Cabelo" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>MQ Professional Titanium Azul - Prancha de Cabelo</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 839,99</span>
+            <p class="price">R$ 518,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F418189829%2F21697682293&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-26%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rd4k-lvanuid2ccpj63" alt="Relógio de Parede Herweg Quartz Preto 660103" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Relógio de Parede Herweg Quartz Preto 660103</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 64,90</span>
+            <p class="price">R$ 47,99</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F872473112%2F20696923210&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-24%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7qvdy-lgkpwv8sd47515" alt="Conjunto Sala de Jantar Mesa Tampo de Vidro 4 Cadeiras Crema/Rustic/Bege Greta Madesa" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Conjunto Sala de Jantar Mesa Tampo de Vidro 4 Cadeiras Crema/Rustic/Bege Greta Madesa</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 1.299,99</span>
+            <p class="price">R$ 989,12</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F376716003%2F20698130447&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-29%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-7rfi6-m94rqmd6uzdddf" alt="Adaptador SSD M.2 NGFF/NVMe USB 3.2 Gen 2 até 5TB Knup KP-HD850" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Adaptador SSD M.2 NGFF/NVMe USB 3.2 Gen 2 até 5TB Knup KP-HD850</h3>
+            <span class="rating">⭐ 4.7</span>
+            <span class="original-price">R$ 82,19</span>
+            <p class="price">R$ 58,68</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F337974126%2F58201359794&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-40%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-8227f-mhryi8h8cr2abb" alt="Vestido Doce Natureza Cotton Quimby" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Vestido Doce Natureza Cotton Quimby</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 104,90</span>
+            <p class="price">R$ 62,90</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--shopee">
+        <a href="https://shope.ee/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fproduct%2F580791382%2F23794666848&sub_id=site" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="discount-badge">-24%</span>
+          <div class="card-img"><img src="https://cf.shopee.com.br/file/sg-11134201-821fk-mh91ax332adm05" alt="Armário de Banheiro Berlim 5 Portas 4 Gavetas Com Cuba e Espelho - Art In Móveis" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Armário de Banheiro Berlim 5 Portas 4 Gavetas Com Cuba e Espelho - Art In Móveis</h3>
+            <span class="rating">⭐ 5.0</span>
+            <span class="original-price">R$ 1.407,89</span>
+            <p class="price">R$ 1.072,72</p>
+            <span class="btn btn--shopee">🛍️ Ver na Shopee</span>
+          </div>
+        </a>
+      </article></div>
+    </section>
+    
     <section id="ofertas">
-      <h2>🔥 Ofertas do Dia</h2>
+      <h2>🔥 Outras Ofertas</h2>
       <div class="grid">
       <article class="card">
-        <a href="https://www.allever.com.br/tinta-inkprinter-para-recarga-de-cartucho-de-impressora-hp--550ml--31385/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296553/image-d2a4738d490f4a218e777fd00cd7ffce.jpg?v=638967635755800000" alt="Tinta InkPrinter para Recarga de Cartucho de Impressora HP (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/LeCyJIgnzufT" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://fken.vteximg.com.br/arquivos/ids/278043/ANTENA-CELULAR-RURAL-AQUARIO-QUADRIBAND-DUAL-CHIP.jpg?v=638480868205970000" alt="ANTENA CELULAR RURAL AQUÁRIO QUADRIBAND DUAL CHIP" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Tinta InkPrinter para Recarga de Cartucho de Impressora HP (550ml)</h3>
-            <p class="price">R$ 91,76</p>
+            <h3>ANTENA CELULAR RURAL AQUÁRIO QUADRIBAND DUAL CHIP</h3>
+            <p class="price">R$ 476,66</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/refil-de-tinta-compativel-inkprinter-para-impressoras-epson-l606-l4150-l4160-l6161-l6171--550ml--31384/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296552/image-104fff65cdf1443280b6f9b270e54159.jpg?v=638967635137070000" alt="Refil de Tinta Compatível InkPrinter para Impressoras Epson L606, L4150, L4160, L6161, L61" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.toymania.com.br/fisher-price-celular-dos-animais-2025/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://toymania.vteximg.com.br/arquivos/ids/1001721/Fisher-Price-Celular-dos-Animais---Mattel-0.jpg?v=638738543295670000" alt="Fisher-Price Celular dos Animais - Mattel" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Refil de Tinta Compatível InkPrinter para Impressoras Epson L606, L4150, L4160, L6161, L61</h3>
-            <p class="price">R$ 104,60</p>
+            <h3>Fisher-Price Celular dos Animais - Mattel</h3>
+            <p class="price">R$ 89,99</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/tinta-corante-inkprinter-para-impressora-epson--800ml--31382/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296550/image-c2109c9da2ca4365b75f29eb794b3c87.jpg?v=638967632072400000" alt="Tinta Corante InkPrinter para Impressora Epson (800ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/aUVw90nENbdM" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://amoedo.vteximg.com.br/arquivos/ids/195284/2333132-BANDEJA-C-PORTA-CELULAR-SERENE-VJD-Amoedo.jpg?v=638582083189770000" alt="Bandeja com Porta Celular Serene Verde Jade Coza" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Tinta Corante InkPrinter para Impressora Epson (800ml)</h3>
-            <p class="price">R$ 110,60</p>
+            <h3>Bandeja com Porta Celular Serene Verde Jade Coza</h3>
+            <p class="price">R$ 12,61</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/tinta-inkprinter-para-recarga-de-cartucho-de-impressora-hp--4x250ml--31375/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296543/image-d6147a8d271841ceb3e12b3e74b2dd27.jpg?v=638967622335330000" alt="Tinta InkPrinter para Recarga de Cartucho de Impressora HP (4x250ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/GbtNlEDuFKqy" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://amoedo.vteximg.com.br/arquivos/ids/195232/2333124-BANDEJA-COM-PORTA-CELULAR-SERENE-LGR-Amoedo.jpg?v=638580499930830000" alt="Bandeja com Porta Celular Serene Light Gray  Coza" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Tinta InkPrinter para Recarga de Cartucho de Impressora HP (4x250ml)</h3>
-            <p class="price">R$ 139,60</p>
+            <h3>Bandeja com Porta Celular Serene Light Gray  Coza</h3>
+            <p class="price">R$ 12,61</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/tinta-corante-inkprinter-para-impressora-epson--1-250ml--31344/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296512/image-4895422b19d94ef39018bdef0ed4934f.jpg?v=638952837498230000" alt="Tinta Corante InkPrinter para Impressora Epson (1.250ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/4clq7Z-PJFde" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/252483/outlet-carregador-elg-wireless-de-celular-e-mesa-wq1wh-branco-1.jpg?v=638985443795700000" alt="Outlet - Carregador ELG Wireless de Celular e Mesa WQ1WH Branco" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Tinta Corante InkPrinter para Impressora Epson (1.250ml)</h3>
-            <p class="price">R$ 155,60</p>
+            <h3>Outlet - Carregador ELG Wireless de Celular e Mesa WQ1WH Branco</h3>
+            <p class="price">R$ 14,70</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/tinta-inktec-para-recarga-de-cartucho-de-impressora-hp--4x100ml--31343/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296511/image-40c7a248ad7a40448345b51de0826f8a.jpg?v=638952836628800000" alt="Tinta InkTec para Recarga de Cartucho de Impressora HP (4x100ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/M7XqQjpbyCwn" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/252420/celular-flip-neo-s-gradiente-dual-chip-32mb-gfp105a-azul-1.jpg?v=638983990270370000" alt="Celular Flip Neo S Gradiente Dual Chip 32MB GFP105A Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Tinta InkTec para Recarga de Cartucho de Impressora HP (4x100ml)</h3>
-            <p class="price">R$ 91,60</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/tinta-corante-inktec-para-impressora-epson--4x100ml--31342/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296510/image-bf50df0b4a564607afca890616f0af19.jpg?v=638952836620970000" alt="Tinta Corante InkTec para Impressora Epson (4x100ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Tinta Corante InkTec para Impressora Epson (4x100ml)</h3>
-            <p class="price">R$ 96,61</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/tinta-inktec-pigmentada-para-impressora-epson--4x100ml--31341/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296509/image-05bff8325b93411cafc5ef3005e0f382.jpg?v=638952836616330000" alt="Tinta InkTec Pigmentada para Impressora Epson (4x100ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Tinta InkTec Pigmentada para Impressora Epson (4x100ml)</h3>
-            <p class="price">R$ 96,61</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/tinta-inktec-para-recarga-de-cartucho-de-impressora-hp--550ml--31340/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296508/image-9670dc494cb047d595932aca6ea89db8.jpg?v=638952836613430000" alt="Tinta InkTec para Recarga de Cartucho de Impressora HP (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Tinta InkTec para Recarga de Cartucho de Impressora HP (550ml)</h3>
-            <p class="price">R$ 105,34</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/tinta-corante-inktec-para-impressora-epson--550ml--31339/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296507/image-9e8c113768844e169dc6e2bee0804f16.jpg?v=638952836606000000" alt="Tinta Corante InkTec para Impressora Epson (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Tinta Corante InkTec para Impressora Epson (550ml)</h3>
-            <p class="price">R$ 119,60</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/tinta-inktec-pigmentada-para-impressora-epson--550ml--31338/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296506/image-4484b22c112843a9b7792b7966aa0709.jpg?v=638952836600500000" alt="Tinta InkTec Pigmentada para Impressora Epson (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Tinta InkTec Pigmentada para Impressora Epson (550ml)</h3>
-            <p class="price">R$ 125,71</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/tinta-inktec-para-recarga-de-cartucho-de-impressora-hp--800ml--31337/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296505/image-7e7fe2045bee4ecba185eafba399c03a.jpg?v=638952836596030000" alt="Tinta InkTec para Recarga de Cartucho de Impressora HP (800ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Tinta InkTec para Recarga de Cartucho de Impressora HP (800ml)</h3>
-            <p class="price">R$ 138,60</p>
+            <h3>Celular Flip Neo S Gradiente Dual Chip 32MB GFP105A Azul</h3>
+            <p class="price">R$ 99,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
@@ -467,468 +925,427 @@
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/0nbLusliyFsB" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/231090/W5_1200G_front_alternativa.png?v=638428208067330000" alt="Roteador Wireless Intelbras Preto Wiforce W51200G – Bivolt 2" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/HKlu2BswJR5C" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/229006/fone-de-ouvido-bluetooth-multilaser-tws-ph300-wireless-preto-1.jpg?v=637885609257070000" alt="Fone de Ouvido Multilaser Bluetooth TWS PH300 Wireless Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Roteador Wireless Intelbras Preto Wiforce W51200G – Bivolt 2</h3>
-            <p class="price">R$ 237,10</p>
+            <h3>Fone de Ouvido Multilaser Bluetooth TWS PH300 Wireless Preto</h3>
+            <p class="price">R$ 70,53</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/gNxOT0tusY30" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/243139/rot.jpg?v=638670336123000000" alt="Roteador Intelbras Access Point Dual Band Alta Velocidade Branco AP 1350 AC-S – Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/AoKUk4PG16pX" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/248004/fone-de-ouvido-sem-fio-pulse-explore-sony-1.jpg.jpg?v=638820587901000000" alt="Fone de Ouvido Sem Fio Pulse Explore PS5 Branco - Sony" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Roteador Intelbras Access Point Dual Band Alta Velocidade Branco AP 1350 AC-S – Bivolt</h3>
-            <p class="price">R$ 898,00</p>
+            <h3>Fone de Ouvido Sem Fio Pulse Explore PS5 Branco - Sony</h3>
+            <p class="price">R$ 1.299,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-800va-mono-entrada-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31602/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298815/image-0a16bbddaefe400ab4a0f6fdfdd498be.jpg?v=639012352552170000" alt="Nobreak Speed 800VA Mono Entrada e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/campainha-ctt-4-st-04-para-telefone---bellkron-29771/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/289953/image-a93d6a157cd445199bfd7169785fe0f6.jpg?v=638820632474300000" alt="Campainha CTT 4/ST-04 Para Telefone - Bellkron" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 800VA Mono Entrada e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
-            <p class="price">R$ 472,00</p>
+            <h3>Campainha CTT 4/ST-04 Para Telefone - Bellkron</h3>
+            <p class="price">R$ 187,78</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-2500va-mono-ent-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31599/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298807/image-dc68b48b264a4b14a69f0640adad0224.jpg?v=639012352541830000" alt="Nobreak Speed 2500VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/modulo-tomada-telefone-rj45-cat-5e-5tg9-9302-vivace---siemens-28554/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/283034/image-71533454310843a29316889ed7632fdd.jpg?v=638730654213400000" alt="Módulo Tomada Telefone RJ45 Cat.5e 5TG9 9302 Vivace - Siemens" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 2500VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
-            <p class="price">R$ 1.333,40</p>
+            <h3>Módulo Tomada Telefone RJ45 Cat.5e 5TG9 9302 Vivace - Siemens</h3>
+            <p class="price">R$ 50,33</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-650va-mono-entrada-e-saida-220v-3-tomadas-protecao-para--modem-roteador-games-e-cftv-31610/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298889/image-287612d2ecf545cd8c6133521a1c52cb.jpg?v=639012352591270000" alt="Nobreak Speed 650VA Mono Entrada e Saida 220V 3 Tomadas Proteção para  Modem, Roteador, Ga" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/alicate-bico-curvo-talicate-bico-curvo-tipo-telefone-isol-1000v-v835a-160mm---robust-28051/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/280710/image-ebe8ec256176435a9af4d77a6791129d.jpg?v=638700623215930000" alt="Alicate Bico Curvo TAlicate Bico Curvo Tipo Telefone Isol.1000V V835A-160MM - Robust" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 650VA Mono Entrada e Saida 220V 3 Tomadas Proteção para  Modem, Roteador, Ga</h3>
-            <p class="price">R$ 306,80</p>
+            <h3>Alicate Bico Curvo TAlicate Bico Curvo Tipo Telefone Isol.1000V V835A-160MM - Robust</h3>
+            <p class="price">R$ 58,46</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-1500va-mono-ent-e-saida-220v-9-tomadas-protecao-para--modem-roteador-games-e-cftv-31608/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298872/image-0d8a66bdaa1e46559403a56215e5c458.jpg?v=639012352582130000" alt="Nobreak Speed 1500VA Mono Ent e Saida 220V 9 tomadas Proteção para  Modem, Roteador, Games" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/tomada-telefone-rj11-branco-ilus-imperia-iris-%E2%80%93-soprano-28561/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/283042/image-1b39f97e2e6444f4a61c1dbb23dbac5a.jpg?v=638730857866930000" alt="Tomada Telefone RJ11 Branco Ilus/Imperia/Iris – Soprano" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 1500VA Mono Ent e Saida 220V 9 tomadas Proteção para  Modem, Roteador, Games</h3>
-            <p class="price">R$ 914,50</p>
+            <h3>Tomada Telefone RJ11 Branco Ilus/Imperia/Iris – Soprano</h3>
+            <p class="price">R$ 11,32</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-2000va-mono-entr-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31600/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298809/image-42fd0dc8225348908a18f096e4aa0109.jpg?v=639012352542630000" alt="Nobreak Speed 2000VA Mono Entr e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/fone-de-ouvido-intra-auricular-amvx-ahp-01-one-dc-5v-300ma-25000/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/260493/image-df3052d2b0524e7394be287baddd2963.jpg?v=638532176260600000" alt="Fone de Ouvido Intra Auricular Amvx AHP 01 ONE DC 5V/300mA" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 2000VA Mono Entr e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
-            <p class="price">R$ 1.091,50</p>
+            <h3>Fone de Ouvido Intra Auricular Amvx AHP 01 ONE DC 5V/300mA</h3>
+            <p class="price">R$ 108,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-650va-mono-entrada-e-saida-220v-6-tomadas-protecao-para--modem-roteador-games-e-cftv-31604/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298836/image-f93150b6f63f47c89f24a048758a1215.jpg?v=639012352561630000" alt="Nobreak Speed 650VA Mono Entrada e Saida 220V 6 Tomadas Proteção para  Modem, Roteador, Ga" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/fone-de-ouvido-amvox-ahp-2401-17283/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/227125/image-64b5157a4445452eba31c193cafa204c.jpg?v=638149373087100000" alt="Fone de Ouvido Amvox AHP 2401" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 650VA Mono Entrada e Saida 220V 6 Tomadas Proteção para  Modem, Roteador, Ga</h3>
-            <p class="price">R$ 422,44</p>
+            <h3>Fone de Ouvido Amvox AHP 2401</h3>
+            <p class="price">R$ 259,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-2000va-mono-ent-e-saida-220v-protecao-para--modem-roteador-games-e-cftv-31601/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298811/image-9d9f5945576548709e4d02ed4b0d756f.jpg?v=639012352546700000" alt="Nobreak Speed 2000VA Mono Ent e Saida 220V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/fone-de-ouvido-amvox-ahp-1209-17284/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/227128/image-19c5593127ba4d89b288d019de7f9eaa.jpg?v=638149373376570000" alt="Fone de Ouvido Amvox AHP 1209" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 2000VA Mono Ent e Saida 220V Proteção para  Modem, Roteador, Games e Cftv</h3>
-            <p class="price">R$ 472,00</p>
+            <h3>Fone de Ouvido Amvox AHP 1209</h3>
+            <p class="price">R$ 145,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-1200va-mono-ent-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31609/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298881/image-0cfe3447ded14388abf64ff20c1a108d.jpg?v=639012352586730000" alt="Nobreak Speed 1200VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/fone-de-ouvido-sport-amvox--ahp-0608-17281/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/227118/image-5704cd3a815c4c2ba86cf1c13959695f.jpg?v=638149358055100000" alt="Fone de Ouvido Sport Amvox  AHP 0608" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 1200VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
-            <p class="price">R$ 628,94</p>
+            <h3>Fone de Ouvido Sport Amvox  AHP 0608</h3>
+            <p class="price">R$ 229,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-2500va-bivolt-ent-120-220v-saida-120v-protecao-para--modem-roteador-games-e-cftv-31607/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298866/image-0d8ab9f17504462e85991ee5c4333d88.jpg?v=639012352576870000" alt="Nobreak Speed 2500VA Bivolt Ent 120/220v Saida 120v Proteção para  Modem, Roteador, Games " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/tomada-externa-para-telefone-cod-622---018-pm004---pezzi-19500/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/237106/image-ce8c3577f18e4a7eac105df076c131d9.jpg?v=638264941576570000" alt="Tomada Externa Para Telefone Cod.622 / 018 PM004 - Pezzi" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 2500VA Bivolt Ent 120/220v Saida 120v Proteção para  Modem, Roteador, Games </h3>
-            <p class="price">R$ 1.368,80</p>
+            <h3>Tomada Externa Para Telefone Cod.622 / 018 PM004 - Pezzi</h3>
+            <p class="price">R$ 0,45</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://www.allever.com.br/nobreak-speed-1200va-bivolt-ent-115v-220v-saida-115v-protecao-para--modem-roteador-games-e-cftv-31606/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298854/image-90d3ef69138b4677bd1da5c71b0cd4f3.jpg?v=639012352571530000" alt="Nobreak Speed 1200VA Bivolt Ent 115v-220v Saida 115v Proteção para  Modem, Roteador, Games" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/alicate-prensa-conector-fone-rj11-rj12-rj45-cod--75533----fortrek-19029/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/235196/image-5a843488dd1042a2a76d358755218577.jpg?v=638235195249900000" alt="Alicate Prensa Conector Fone RJ11/RJ12/RJ45 Cod. 75533  - Fortrek" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Nobreak Speed 1200VA Bivolt Ent 115v-220v Saida 115v Proteção para  Modem, Roteador, Games</h3>
-            <p class="price">R$ 649,00</p>
+            <h3>Alicate Prensa Conector Fone RJ11/RJ12/RJ45 Cod. 75533  - Fortrek</h3>
+            <p class="price">R$ 58,94</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/kcA0FwcU-X3l" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/241735/17.png.png?v=638911476494870000" alt="Ar Condicionado Split Hi Wall Philco Inverter 24000 BTU/h Frio Monofásico PAC24000IFM15 - " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/d4yIym3nN1jy" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://oceane.vteximg.com.br/arquivos/ids/202174/AP2001078CUNI_perfume_capilar_60ml_1.jpg?v=638149972214770000" alt="Perfume Capilar 60ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Hi Wall Philco Inverter 24000 BTU/h Frio Monofásico PAC24000IFM15 - </h3>
-            <p class="price">R$ 4.791,94</p>
+            <h3>Perfume Capilar 60ml</h3>
+            <p class="price">R$ 35,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/GcDZL2WZpSEJ" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/231804/Kit-9K.jpg?v=638911480851730000" alt="Ar Condicionado Split Hi Wall Inverter Gree G-Top Auto 12000 BTU/h Frio CB574N09200 – 220 " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/2tEaO7UyrRrH" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://oceane.vteximg.com.br/arquivos/ids/202274/K795_kit_completo_para_cabelos_cacheados_e_ondulados_1.jpg?v=638156276120270000" alt="Kit Perfume Capilar + Shampoo a Seco + Óleo Finalizador Capilar (3 Produtos)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Hi Wall Inverter Gree G-Top Auto 12000 BTU/h Frio CB574N09200 – 220 </h3>
-            <p class="price">R$ 2.728,30</p>
+            <h3>Kit Perfume Capilar + Shampoo a Seco + Óleo Finalizador Capilar (3 Produtos)</h3>
+            <p class="price">R$ 98,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/VY999OzhSIZ0" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/233319/Split-Vix-.jpg?v=638536270244000000" alt="Ar Condicionado Split Inverter Vix 24000 BTUs Frio AS-24TW2RBBDK03 – 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/uRQtu2gUc834" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://oceane.vteximg.com.br/arquivos/ids/202224/K796_kit_perfume_capilar_shampoo_a_seco_1.jpg?v=638150011002270000" alt="Kit Perfume Capilar + Shampoo a Seco (2 Produtos)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Inverter Vix 24000 BTUs Frio AS-24TW2RBBDK03 – 220 Volts</h3>
-            <p class="price">R$ 3.693,00</p>
+            <h3>Kit Perfume Capilar + Shampoo a Seco (2 Produtos)</h3>
+            <p class="price">R$ 58,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/10tKQfG3TbN5" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/228349/Split-Voice.jpg?v=638911478843700000" alt="Ar Condicionado Split Hi Wall R32 LG Dual Inverter Voice +AI 12000 BTU/h Frio S3-Q12JA31K–" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/CGtQSdO1dpUI" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://oceane.vteximg.com.br/arquivos/ids/202598/K836_kit_reconstrutor_capilar_protetor_termico_oleo_finalizador_perfume_capilar_1.jpg?v=638180277626030000" alt="Kit Cabelo de Salão - Reconstrutor + Protetor Térmico + Óleo Finalizador + Perfume (4 Prod" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Hi Wall R32 LG Dual Inverter Voice +AI 12000 BTU/h Frio S3-Q12JA31K–</h3>
+            <h3>Kit Cabelo de Salão - Reconstrutor + Protetor Térmico + Óleo Finalizador + Perfume (4 Prod</h3>
+            <p class="price">R$ 138,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/-IEDd3R8dOWf" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/193380/desodorante-colonia-jequiti-cebolinha.webp?v=638954634790170000" alt="Perfume Cebolinha Jequiti Turma Da Mônica 25ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Perfume Cebolinha Jequiti Turma Da Mônica 25ml</h3>
+            <p class="price">R$ 25,40</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/F-Xzt0qTP5Dm" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/159874/19045108084.jpg?v=637950553944100000" alt="Desodorante Ban Unscented Sem Perfume Roll-on 103ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Desodorante Ban Unscented Sem Perfume Roll-on 103ml</h3>
+            <p class="price">R$ 61,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/5WdY00xbeAl1" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/192842/00011406501_8.jpg?v=638944256476630000" alt="Desodorante Above Sem Perfume Aerosol 150ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Desodorante Above Sem Perfume Aerosol 150ml</h3>
+            <p class="price">R$ 6,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/CJ-Ybi51cRyq" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/160629/7896007546039.jpg?v=637950664527030000" alt="Protetor Diário Intimus Days Sem Abas Sem Perfume 80 Unidades" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Protetor Diário Intimus Days Sem Abas Sem Perfume 80 Unidades</h3>
+            <p class="price">R$ 22,05</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/haFxjrKXU-1L" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/171299/download--7-.jpg?v=638313500479270000" alt="Absorvente Intimus Days Sem Perfume Sem Abas 40 Unidades" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Absorvente Intimus Days Sem Perfume Sem Abas 40 Unidades</h3>
+            <p class="price">R$ 13,29</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/LZhIv8loIDS6" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/166271/7891150055872.jpg?v=637952085958530000" alt="Desodorante Rexona Men Sem Perfume Aerosol 150ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Desodorante Rexona Men Sem Perfume Aerosol 150ml</h3>
+            <p class="price">R$ 16,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/E5-b1KTgml9S" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://promofarma.vteximg.com.br/arquivos/ids/184163/7899674038548.jpg?v=638881803665700000" alt="Desodorante Above Sem Perfume Rollon 50ml" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Desodorante Above Sem Perfume Rollon 50ml</h3>
+            <p class="price">R$ 10,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/HsLDcRBShqXP" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://dmvfarma.vteximg.com.br/arquivos/ids/262319/_0.jpg?v=638683161874530000" alt="Protetor Diário Intimus Cuidado Diário Sem Abas Sem Perfume Pacote Promocional Leve Mais P" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Protetor Diário Intimus Cuidado Diário Sem Abas Sem Perfume Pacote Promocional Leve Mais P</h3>
+            <p class="price">R$ 11,49</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/qSwZf18muui0" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/240961/smart-tv-lg-50-4k-uhd-thinq-ai-50up7550psf-lcd-led-preto-1.jpg?v=638461107860200000" alt="Smart TV LG 50&quot; 4K UHD ThinQ AI 50UP7550PSF LCD LED Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Smart TV LG 50&quot; 4K UHD ThinQ AI 50UP7550PSF LCD LED Preto</h3>
+            <p class="price">R$ 3.099,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/Vhuq4DRuLpoX" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/244240/smart-tv1.jpg?v=638675581909770000" alt="Smart TV Philco 58’’ 4K HDR10 Dolby Áudio Led PTV58G70R2CSGBL – Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Smart TV Philco 58’’ 4K HDR10 Dolby Áudio Led PTV58G70R2CSGBL – Bivolt</h3>
             <p class="price">R$ 2.998,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/9owC7sOnvcbu" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/247266/foto2--1-.jpg.jpg?v=638804109125970000" alt="Ar Condicionado Split Vix 9000 BTU/h Frio AS-09CR2SLDDK02 – 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/4WLnwX9YssVF" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/245566/smart-tv-lg-65-4k-uhd-thinq-ai-65ut8050psa-60hz-preto-1.jpg.jpg?v=638751443264170000" alt="Smart TV LG 65&quot; 4K UHD ThinQ AI 65UT8050PSA 60Hz Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Vix 9000 BTU/h Frio AS-09CR2SLDDK02 – 220 Volts</h3>
-            <p class="price">R$ 1.786,52</p>
+            <h3>Smart TV LG 65&quot; 4K UHD ThinQ AI 65UT8050PSA 60Hz Preto</h3>
+            <p class="price">R$ 3.499,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/8BtpaoXz3AO4" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/232023/kit.jpg?v=638863960054470000" alt="Ar Condicionado Split Dual Inverter 24000 BTUs LG Voice +AI Frio S3-Q24K231B 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/5KhQVNxN10B5" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/249076/TV-PTV50VA4REGB-LED_01.2.jpg?v=638942289340800000" alt="Smart TV Philco 50&quot; LED Roku TV Dolby Áudio PTV50VA4REGB - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Dual Inverter 24000 BTUs LG Voice +AI Frio S3-Q24K231B 220 Volts</h3>
-            <p class="price">R$ 5.108,00</p>
+            <h3>Smart TV Philco 50&quot; LED Roku TV Dolby Áudio PTV50VA4REGB - Bivolt</h3>
+            <p class="price">R$ 2.487,75</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/yEO0zZQNlN2W" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/230631/Kit-oficial.jpg?v=638400836599700000" alt="Ar Condicionado Split Cassete Inverter Carrier Connect 36000 BTU/h Frio R32 Monofásico 40K" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/Lrk87GNIKlfh" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/249072/TV-PTV42G6FR2CPF-LED_10.jpg?v=638942280706630000" alt="Smart TV Philco 42&quot; LED Roku TV Dolby Áudio PTV42G6FR2CPF - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Cassete Inverter Carrier Connect 36000 BTU/h Frio R32 Monofásico 40K</h3>
-            <p class="price">R$ 12.598,00</p>
+            <h3>Smart TV Philco 42&quot; LED Roku TV Dolby Áudio PTV42G6FR2CPF - Bivolt</h3>
+            <p class="price">R$ 1.910,21</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/Nic5JO7AqaeL" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/246155/181038-600-auto.jpg.jpg?v=638911482684070000" alt="Ar Condicionado Split Hi Wall Inverter Philco 12000 BTU/h Frio PAC12FC – 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/2NspqgeD4ZfD" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://amoedo.vteximg.com.br/arquivos/ids/198556/2351596-Suporte-Ultra-Slim-Inclinavel-Smart-TV-37---a-85---Preto-Brasforma---Brasforma--3-.jpg?v=638651943324730000" alt="Suporte Ultra Slim Inclinável Smart TV 37'' a 85'' Preto Brasforma" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Hi Wall Inverter Philco 12000 BTU/h Frio PAC12FC – 220 Volts</h3>
-            <p class="price">R$ 2.598,00</p>
+            <h3>Suporte Ultra Slim Inclinável Smart TV 37'' a 85'' Preto Brasforma</h3>
+            <p class="price">R$ 142,99</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/SJth2V45Mlt9" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/232442/Split-Elgin.jpg?v=638495553577930000" alt="Ar Condicionado Split Hi Wall Inverter Elgin Eco Dream 12000 BTU/h Quente e Frio 45HIQI12C" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/HspBErsOrJXJ" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/253085/smart-tv-32-samsung-hd-hdr-un32h5000fgxzd-preto-1.jpg?v=639002072203700000" alt="Smart TV 32&quot; Samsung HD HDR UN32H5000FGXZD Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Hi Wall Inverter Elgin Eco Dream 12000 BTU/h Quente e Frio 45HIQI12C</h3>
-            <p class="price">R$ 2.988,00</p>
+            <h3>Smart TV 32&quot; Samsung HD HDR UN32H5000FGXZD Preto</h3>
+            <p class="price">R$ 1.099,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/cIovp1h46az6" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/245860/ON-OFF-9-E-12-K-FONTAINE.jpg.jpg?v=638803245934370000" alt="Ar Condicionado Split 12.000 Btus Fontaine Frio FCST12F - 127 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/zgjfg30jajix" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/249068/P32CRA_01.2.jpg?v=638937378666270000" alt="Smart TV Philco 32&quot; LED Roku TV HD Dolby Áudio P32CRA - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split 12.000 Btus Fontaine Frio FCST12F - 127 Volts</h3>
-            <p class="price">R$ 2.387,00</p>
+            <h3>Smart TV Philco 32&quot; LED Roku TV HD Dolby Áudio P32CRA - Bivolt</h3>
+            <p class="price">R$ 1.148,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/-i9NIrrgDCYx" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/232065/Kit.jpg?v=638642541620870000" alt="Ar Condicionado Split Hi Wall Inverter Springer Midea Xtreme Save Connect 12000 BTU/h Quen" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/xsGcr13ukLZe" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/244305/imagem-1.jpg?v=638676389662800000" alt="Smart TV Philco 50’’ 4K Roku TV HDR10 PTV50G70R2CSGBL - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Hi Wall Inverter Springer Midea Xtreme Save Connect 12000 BTU/h Quen</h3>
-            <p class="price">R$ 3.110,00</p>
+            <h3>Smart TV Philco 50’’ 4K Roku TV HDR10 PTV50G70R2CSGBL - Bivolt</h3>
+            <p class="price">R$ 2.804,86</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/xvmlaHBfourF" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/229061/Kit-Philco--.jpg?v=638942345279100000" alt="Ar Condicionado Split Inverter Philco Eco 36.000 BTUs Quente e Frio Monofásico PAC36000IQF" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/3lHDEk0RznEf" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://webfones.vteximg.com.br/arquivos/ids/245561/smart-tv-32-lg-hd-32lr600bpsb-60hz-webos-23-a5-ger6-preto-1.jpg.jpg?v=638751435323270000" alt="Smart TV 32&quot; LG HD 32LR600BPSB 60Hz WebOS 23 A5 Ger6 Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Ar Condicionado Split Inverter Philco Eco 36.000 BTUs Quente e Frio Monofásico PAC36000IQF</h3>
-            <p class="price">R$ 7.998,00</p>
+            <h3>Smart TV 32&quot; LG HD 32LR600BPSB 60Hz WebOS 23 A5 Ger6 Preto</h3>
+            <p class="price">R$ 1.599,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/hB89IkgbOj5R" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/251215/W243JACWS684_WNSL_1.jpg.jpg?v=638796437481100000" alt="Jaqueta Jeans Estonada Marrom" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://www.allever.com.br/smart-tv-led-24--hd-philco-ptv24g5yr2cp-wi-fi-dolby-audio-roku-tv-black-30228/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/292019/image-8d77ec7ec767449eb1101957b48b4fb9.jpg?v=638850922356070000" alt="Smart TV LED 24&quot; HD Philco PTV24G5YR2CP Wi-Fi Dolby Audio Roku TV Black" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Jeans Estonada Marrom</h3>
-            <p class="price">R$ 419,99</p>
+            <h3>Smart TV LED 24&quot; HD Philco PTV24G5YR2CP Wi-Fi Dolby Audio Roku TV Black</h3>
+            <p class="price">R$ 1.499,90</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/074pmSRofjTq" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/163831/jaqueta-jeans-truker-puidos-M223JACDW221_JBLK_1.jpg?v=638986391090330000" alt="Jaqueta Jeans Truker Puidos Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/ZUqaBd28IIxd" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/185407/128281.jpg?v=637517798577730000" alt="Controle Eletrônico Athena para Geladeira Consul W10780260 - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Jeans Truker Puidos Preto</h3>
-            <p class="price">R$ 599,00</p>
+            <h3>Controle Eletrônico Athena para Geladeira Consul W10780260 - Bivolt</h3>
+            <p class="price">R$ 254,75</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/MtHeTLjhh3g6" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/158996/jaqueta-jeans-guess-trucker-M213JACDWY73_CLAR_1.jpg?v=639014243232470000" alt="Jaqueta Jeans Guess Trucker Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/wMaSRHqv4utN" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/185399/125990.jpg?v=637517778802100000" alt="Hélice Radial para Geladeira Consul e Brastemp W10185283" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Jeans Guess Trucker Azul Claro</h3>
-            <p class="price">R$ 499,00</p>
+            <h3>Hélice Radial para Geladeira Consul e Brastemp W10185283</h3>
+            <p class="price">R$ 45,22</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/UjmoMWYQFLBI" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/241120/jaqueta-matelasse-pu-M4BL28WGJ60_G1FE_1.jpg?v=638846482625000000" alt="Jaqueta Matelassê PU Off White" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/8UUtQ9mYYD4m" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/185805/123484-ENVIARRR.jpg?v=637522157332700000" alt="Placa de Interface Bivolt para Geladeira Brastemp BRM37A 127/220V" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Matelassê PU Off White</h3>
-            <p class="price">R$ 719,90</p>
+            <h3>Placa de Interface Bivolt para Geladeira Brastemp BRM37A 127/220V</h3>
+            <p class="price">R$ 100,21</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/AxeCJZv0RUOi" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/159034/jaqueta-jeans-gola-pelo-guess-M213JACDWY75_INTER_1.jpg?v=639009696203800000" alt="Jaqueta Jeans Gola Pelo Guess Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/H9vNvnery7s3" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/184931/123521.jpg?v=637515234965970000" alt="Conjunto Placa de Controle Thevenin para Geladeira Brastemp W10619171 - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Jeans Gola Pelo Guess Azul</h3>
-            <p class="price">R$ 359,99</p>
+            <h3>Conjunto Placa de Controle Thevenin para Geladeira Brastemp W10619171 - Bivolt</h3>
+            <p class="price">R$ 521,00</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/ju2I8Qhna8Fr" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/251122/jaqueta-guess-pelo-sintetico-W0BL0NWDCH0_G8K2_1.jpg?v=638796276989100000" alt="Jaqueta Pelo Sintético Verde Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/YQcFnglqPxlJ" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/184929/123448.jpg?v=637515233192200000" alt="Conjunto Placa de Controle Athena para Geladeira Consul W11125635 - Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Pelo Sintético Verde Escuro</h3>
-            <p class="price">R$ 999,90</p>
+            <h3>Conjunto Placa de Controle Athena para Geladeira Consul W11125635 - Bivolt</h3>
+            <p class="price">R$ 122,67</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/fmvi-hKpaMRH" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/202219/W4GL21WFWW2_F0AJ_1.jpg?v=638989971746100000" alt="Jaqueta Eco Tweed E Jeans Branco" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/fx6iGZZM8Zvm" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/185102/120897.jpg?v=637516038449230000" alt="Prateleira para Porta de Geladeira Consul 326049386" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Eco Tweed E Jeans Branco</h3>
-            <p class="price">R$ 599,99</p>
+            <h3>Prateleira para Porta de Geladeira Consul 326049386</h3>
+            <p class="price">R$ 18,39</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="https://lmdee.link/gNhjypDrQ2ah" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/201431/W3GL09WFCJ0_JBLK_1.jpg?v=639008014707070000" alt="Jaqueta Bomber Renda Guess Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+        <a href="https://lmdee.link/21Zw82OM-le6" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/185375/120526.jpg?v=637517649132500000" alt="Puxador Gaveta de Legumes para Geladeira Consul e Brastemp W10331995" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
           <div class="card-body">
-            <h3>Jaqueta Bomber Renda Guess Preto</h3>
-            <p class="price">R$ 599,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/BxpC82IDaFEn" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/277765/jaqueta-jeans-guess-trucker-W231JACDW682_CLAR_1.jpg?v=638996815149570000" alt="Jaqueta Jeans Guess Trucker Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Jaqueta Jeans Guess Trucker Azul Claro</h3>
-            <p class="price">R$ 599,00</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/25NN0U47ENpa" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/167097/jaqueta-trucker-sarja-guess-M231JACDW702_PEOY_1.jpg?v=639009805833500000" alt="Jaqueta Trucker Sarja Guess Off White" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Jaqueta Trucker Sarja Guess Off White</h3>
-            <p class="price">R$ 599,00</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/Ql70yzyQZWmi" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/173149/jaqueta-nylon-puffer-camuflada-guess-M2BL25WEZ60_P7CU_1.jpg?v=638651251812770000" alt="Jaqueta Nylon Puffer Camuflada Guess Verde Militar" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Jaqueta Nylon Puffer Camuflada Guess Verde Militar</h3>
-            <p class="price">R$ 959,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/KRosOCQnYQgg" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://malwee.vteximg.com.br/arquivos/ids/1016596/1000006668_02023_1.jpg?v=638791378641030000" alt="Jaqueta Básica Masculina Com Capuz Em Moletom Flanelado" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Jaqueta Básica Masculina Com Capuz Em Moletom Flanelado</h3>
-            <p class="price">R$ 169,00</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/5d-YoL-NxxI3" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://fken.vteximg.com.br/arquivos/ids/234140/Botina-de-Seguranca-Monod-Sem-Biqueira-N°38-Calcados-Cartom.jpg?v=638980344201930000" alt="BOTINA DE ELÁSTICO CARTOM CALÇADOS SEM BIQUEIRA" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>BOTINA DE ELÁSTICO CARTOM CALÇADOS SEM BIQUEIRA</h3>
-            <p class="price">R$ 39,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://www.allever.com.br/conjunto-calca-e-japona-pvc-amarelo-com-capuz-tam--g-7099000001--capseg-28347/p" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/282116/image-b96028f712c149a8a137a2a7eb1dd87a.jpg?v=638720536441030000" alt="Conjunto Calça e Japona Pvc Amarelo Com Capuz Tam. G 7099000001- CapSeg" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Conjunto Calça e Japona Pvc Amarelo Com Capuz Tam. G 7099000001- CapSeg</h3>
-            <p class="price">R$ 43,36</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/0-1A7irjlhru" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/234466/calca-jeans-guess-skinny-M243SKNDW52F_ESC_1.jpg?v=638749846606770000" alt="Calça Jeans Skinny Azul Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Jeans Skinny Azul Escuro</h3>
-            <p class="price">R$ 279,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/cp-XCEo1DyH2" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/254710/calca-jeans-flare-mid-rise-W241MFLDW30F_CLAR_1.jpg?v=638829343365630000" alt="Calça Jeans Flare Mid Rise Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Jeans Flare Mid Rise Azul Claro</h3>
-            <p class="price">R$ 229,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/5EOFPykwOVOd" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/207186/cal-C3-A7a-sarja-slim-tela-M243SLMWS02D_SLTP_1.jpg?v=638784468999900000" alt="Calça Sarja Slim Cinza" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Sarja Slim Cinza</h3>
-            <p class="price">R$ 299,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/0kOqbKN26AAL" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/254895/calca-jeans-guess-mom-W243MOMDW63F_INTER_1.jpg?v=638829373876270000" alt="Calça Mom Jeans Rasgos Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Mom Jeans Rasgos Azul</h3>
-            <p class="price">R$ 239,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/asmhrtyhPa4L" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/235965/calca-jeans-guess-regular-stright-M243SLMDW50F_ESC_1.jpg?v=638780904166170000" alt="Calça Jeans Regular Straight Azul Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Jeans Regular Straight Azul Escuro</h3>
-            <p class="price">R$ 279,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/RoYgd-OeAHpx" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/179277/cal-C3-A7a-jeans-slim-straight-M241SLMDW204_CLAR_1.jpg?v=638651765327470000" alt="Calça Jeans Slim Straight Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Jeans Slim Straight Azul Claro</h3>
-            <p class="price">R$ 279,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/c3hA1rpxoxwK" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/198703/cal-C3-A7a-jeans-wide-leg-pu-C3-ADdos-W241WIDDW276_INTER_1.jpg?v=638888054293770000" alt="Calça Jeans Wide Leg Puídos Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Jeans Wide Leg Puídos Azul</h3>
-            <p class="price">R$ 279,99</p>
-            <span class="btn">🛒 Ver oferta</span>
-          </div>
-        </a>
-      </article>
-      <article class="card">
-        <a href="https://lmdee.link/Eg6GWbvPEshA" target="_blank" rel="nofollow noopener noreferrer">
-          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/249708/calca-jeans-skinny-botoes-laterais-W241SKNDW21F_ESC_1.jpg?v=638829378178070000" alt="Calça Jeans Skinny Botões Laterais Azul Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
-          <div class="card-body">
-            <h3>Calça Jeans Skinny Botões Laterais Azul Escuro</h3>
-            <p class="price">R$ 279,99</p>
+            <h3>Puxador Gaveta de Legumes para Geladeira Consul e Brastemp W10331995</h3>
+            <p class="price">R$ 101,99</p>
             <span class="btn">🛒 Ver oferta</span>
           </div>
         </a>
       </article></div>
     </section>
   </main>
-
   <footer>
     <p>&copy; 2026 Terminal de Ofertas</p>
     <p>Alguns links são de afiliados. Ao comprar você apoia o canal sem pagar a mais.</p>
