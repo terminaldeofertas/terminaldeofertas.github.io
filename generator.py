@@ -356,6 +356,7 @@ CSS = """
   header { background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); border-bottom: 1px solid var(--border); padding: 2rem 1rem; text-align: center; }
   header h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--green); letter-spacing: -0.5px; }
   header p  { color: var(--muted); margin-top: .4rem; }
+  .logo { width: 96px; height: 96px; border-radius: 20px; margin-bottom: .75rem; object-fit: cover; }
   .stamp    { display: inline-block; margin-top: .8rem; font-size: .75rem; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: .2rem .8rem; }
 
   main { max-width: 1280px; margin: 0 auto; padding: 2rem 1rem 4rem; }
@@ -448,7 +449,8 @@ def build_html(
 </head>
 <body>
   <header>
-    <h1>💻 Terminal de Ofertas</h1>
+    <img src="logo.jpg" alt="Terminal de Ofertas" class="logo">
+    <h1>Terminal de Ofertas</h1>
     <p>As melhores promoções selecionadas automaticamente</p>
     <span class="stamp">Atualizado em {now} &bull; {total} ofertas</span>
   </header>
@@ -460,6 +462,7 @@ def build_html(
   <footer>
     <p>&copy; {year} Terminal de Ofertas</p>
     <p>Alguns links são de afiliados. Ao comprar você apoia o canal sem pagar a mais.</p>
+    <p>⚠️ Os preços e a disponibilidade dos produtos podem ser alterados a qualquer momento conforme o parceiro.</p>
     <p>Siga no Telegram: <a href="https://t.me/terminaldeofertas" target="_blank">@terminaldeofertas</a></p>
   </footer>
 </body>
