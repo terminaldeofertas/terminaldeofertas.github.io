@@ -191,7 +191,7 @@ def campaign_card(camp: dict) -> str:
     link  = get_campaign_link(camp)
     img   = get_campaign_image(camp)
 
-    end_at = camp.get("period", {}).get("endAt", "")
+    end_at = (camp.get("period") or {}).get("endAt", "")
     expiry = ""
     if end_at:
         try:
