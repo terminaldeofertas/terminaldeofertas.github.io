@@ -1,0 +1,43 @@
+name: Atualizar site
+
+on:
+  schedule:
+    # Roda a cada 3 horas
+    - cron: "0 */3 * * *"
+  # Permite rodar manualmente pelo GitHub Actions
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Gerar site
+        env:
+          LOMADEE_TOKEN: ${{ secrets.LOMADEE_TOKEN }}
+          SOURCE_ID:     ${{ secrets.SOURCE_ID }}
+          SEARCH_TERMS:  ${{ secrets.SEARCH_TERMS }}
+          SITE_URL:      ${{ secrets.SITE_URL }}
+        run: python generator.py
+
+      - name: Commit e push (se houver mudanças)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html sitemap.xml
+          git diff --cached --quiet && echo "Sem alterações." || git commit -m "chore: atualiza ofertas $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
