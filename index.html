@@ -4,18 +4,935 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terminal de Ofertas — Melhores promoções do dia</title>
-  <meta name="description" content="As melhores ofertas e cupons de desconto selecionados automaticamente.">
+  <meta name="description" content="As melhores ofertas e cupons de desconto selecionados automaticamente. Promoções de celulares, notebooks, tênis, perfumes e muito mais.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title"       content="Terminal de Ofertas">
+  <meta property="og:description" content="As melhores ofertas do dia selecionadas para você.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://terminaldeofertas.github.io">
+  <link rel="canonical"           href="https://terminaldeofertas.github.io">
   <style>
-    body { margin: 0; background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-    .center { text-align: center; padding: 2rem; }
-    h1 { color: #3fb950; font-size: 2rem; }
-    p  { color: #8b949e; margin-top: .5rem; }
-  </style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --border: #30363d;
+    --green: #3fb950;
+    --green-dim: #238636;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --card-bg: #161b22;
+    --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; }
+
+  /* Header */
+  header { background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); border-bottom: 1px solid var(--border); padding: 2rem 1rem; text-align: center; }
+  header h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--green); letter-spacing: -0.5px; }
+  header p  { color: var(--muted); margin-top: .4rem; }
+  .stamp    { display: inline-block; margin-top: .8rem; font-size: .75rem; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: .2rem .8rem; }
+
+  /* Layout */
+  main { max-width: 1280px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  section { margin-bottom: 3rem; }
+  section > h2 { font-size: 1.2rem; color: var(--text); border-left: 3px solid var(--green); padding-left: .75rem; margin-bottom: 1.25rem; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+
+  /* Card */
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .15s, border-color .15s; position: relative; }
+  .card:hover { transform: translateY(-3px); border-color: var(--green-dim); }
+  .card a { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
+  .card-img { aspect-ratio: 1/1; background: #0d1117; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .no-img { font-size: 3rem; }
+  .card-body { padding: .85rem; display: flex; flex-direction: column; gap: .4rem; flex: 1; }
+  .card-body h3 { font-size: .82rem; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .price { font-size: 1rem; font-weight: 700; color: var(--green); margin-top: auto; }
+  .coupon-code { font-size: .8rem; background: #1f2937; border: 1px dashed var(--green-dim); border-radius: 6px; padding: .3rem .5rem; color: var(--green); }
+  .expiry { font-size: .75rem; color: var(--muted); }
+  .btn { display: block; text-align: center; background: var(--green-dim); color: #fff; border-radius: 6px; padding: .45rem; font-size: .8rem; font-weight: 600; margin-top: auto; transition: background .15s; }
+  .card:hover .btn { background: var(--green); }
+  .card-badge { position: absolute; top: .5rem; right: .5rem; background: rgba(13,17,23,.85); border: 1px solid var(--border); border-radius: 20px; font-size: .7rem; padding: .15rem .5rem; color: var(--text); backdrop-filter: blur(4px); }
+  .card--campaign .card-img { aspect-ratio: 16/9; }
+
+  /* Footer */
+  footer { text-align: center; padding: 2rem 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .8rem; line-height: 1.8; }
+  footer a { color: var(--green); text-decoration: none; }
+
+  /* Aviso */
+  .aviso { background: #161b22; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: var(--muted); }
+
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
 </head>
 <body>
-  <div class="center">
+  <header>
     <h1>💻 Terminal de Ofertas</h1>
-    <p>Site em configuração. As ofertas aparecerão aqui em breve!</p>
-  </div>
+    <p>As melhores promoções selecionadas automaticamente</p>
+    <span class="stamp">Atualizado em 11/04/2026 às 16:01 &bull; 112 ofertas</span>
+  </header>
+
+  <main>
+    
+    <section id="campanhas">
+      <h2>🎫 Cupons &amp; Campanhas</h2>
+      <div class="grid">
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/0yZi-9sx7Aph" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>Cupom de 10% de desconto </h3>
+            <p class="coupon-code">🔑 Cupom: <strong>10EXTRA</strong></p>
+            <p class="expiry">📅 Válido até 14/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/sF8JUKwztI7N" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>Cupom de 5% de desconto </h3>
+            <p class="coupon-code">🔑 Cupom: <strong>NOITE5</strong></p>
+            <p class="expiry">📅 Válido até 30/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/BuikBYrFP-pQ" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>Cupom de 10% de desconto </h3>
+            <p class="coupon-code">🔑 Cupom: <strong>NOITE10</strong></p>
+            <p class="expiry">📅 Válido até 30/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/CqIjhpqA33iA" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>15% OFF + Frete Grátis em Outono Inverno Infantil</h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/FZur2XWDIXyx" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3> 15% OFF + Frete Grátis em Outono Inverno (Adulto e Infantil)</h3>
+            <p class="coupon-code">🔑 Cupom: <strong>INVERNO</strong></p>
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/e-tdx6uhyCNo" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/b17209be-fa6e-49a2-9a20-90c0ffa7d821/banners/202604_Midia_Zaxy_CompreEGanhe_Meias_Google_1200x628_V1.jpg" alt="Compre e Ganhe - Meias Zaxy" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Compre e Ganhe - Meias Zaxy</h3>
+            
+            
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/tVY7qAf45lLB" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/5d72315c-dcc2-41e5-912a-79d76c897740/banners/202604_Midia_LG_DiaDasMaes_EntregaGarantida_1080x1080_V1.jpg" alt="Dia das Mães" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Dia das Mães</h3>
+            
+            
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/KGQlXGq8GmUc" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>CUPOM DE 5% NA CADEIRA ROSA CONCÓRDIA</h3>
+            <p class="coupon-code">🔑 Cupom: <strong>CADEIRAROSA</strong></p>
+            <p class="expiry">📅 Válido até 01/05/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/JWjwO1TLOhXp" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/90cc6f75-f2d1-433f-9e8c-d19fca0c75ff/banners/Feed.png" alt="Promoção de Gabinetes Gamers" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Promoção de Gabinetes Gamers</h3>
+            
+            <p class="expiry">📅 Válido até 01/05/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/DL0uEEfaCBP5" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/dc2bccc6-0bcc-45d3-a2b5-06a581771710/banners/Prancheta%203.lomadee.png" alt="Roomba 105+ - Campanha de Abril (Comunicação: Parcelamento, Percentual de Desconto)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Roomba 105+ - Campanha de Abril (Comunicação: Parcelamento, Percentual de Desconto)</h3>
+            
+            
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/Nzy6g1yTuf9W" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/cb630757-5f14-4d4e-9333-aba9dca8b7fc/banners/Prancheta%202%20%281%29.png" alt="Roomba 705+ - Campanha de Abril (Comunicação: Parcelamento, Percentual de Desconto)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Roomba 705+ - Campanha de Abril (Comunicação: Parcelamento, Percentual de Desconto)</h3>
+            
+            <p class="expiry">📅 Válido até 21/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/hOknybkQQaqR" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/15354d04-7153-4bb8-b02b-104b45458a04/banners/Lomadee_XFF_2026_V0_I-120x600.png" alt="2026.04 - Xiaomi Fan Festival" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>2026.04 - Xiaomi Fan Festival</h3>
+            
+            
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/63j0Fm4NpJ8i" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>Night Sale: Ganhe MIni Kit de pincéis acima de R$219 | Use o cupom MEUMINI</h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/o4WmKymXpKEk" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/d4f30705-9d09-4668-b508-beb669d528c4/banners/_categoria_desk.png" alt="Cuidados com a pele no Outono" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Cuidados com a pele no Outono</h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/0nVeLZyoEhXB" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/f51429ca-5c71-4c26-b74b-97f8ad3ad655/banners/20260407_Progressiva_geral-20260407T203239Z-3-001.zip" alt="Progressiva Geral | 2 itens 5% | 3 itens 10% | 4 itens 15%OFF " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Progressiva Geral | 2 itens 5% | 3 itens 10% | 4 itens 15%OFF </h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/4gBj64RPO4GX" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/42417944-191c-4e4f-b1d6-0d08203c5c2a/banners/20260407_progressiva_brindes_skincare_app.jpg" alt="Progressiva de brindes Skincare | SKINCARE (SÓ SITE)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Progressiva de brindes Skincare | SKINCARE (SÓ SITE)</h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://cdn.lomadee.com.br/offer/d1e83dbc-d764-40e8-b7a1-f9e8992bf99f/spreadsheet/Ofertas-TerabyteFolha2-5.csv" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>Ofertas Terabyte</h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://cdn.lomadee.com.br/offer/7043a253-628c-4fb9-af09-6dd5bdd3efde/spreadsheet/Panico-de-OfertasFolha2.csv" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/611acfa7-a30b-45fa-91d3-ba9aa1de9e6c/banners/imagem%20%2851%29.png" alt="Pãnico de Ofertas Openbox2" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Pãnico de Ofertas Openbox2</h3>
+            
+            <p class="expiry">📅 Válido até 13/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/vNBJlWyosh09" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><span class="no-img">🎁</span></div>
+          <div class="card-body">
+            <h3>Smartphone Motorola Moto G15 4G Octa Core 256GB 4GB - Grafite - Quadriband (De: R$ 1.652,0</h3>
+            
+            
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card card--campaign">
+        <a href="https://lmdee.link/B7SMbsYBGffA" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-badge">🔥 Oferta</div>
+          <div class="card-img"><img src="https://cdn.lomadee.com.br/offer/b3425fae-1257-4b6a-b97a-d9b67c81e6e4/banners/Lomadee%201%20-%201.png" alt="Vinhos com Até 25% OFF" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>🎁</span>'"></div>
+          <div class="card-body">
+            <h3>Vinhos com Até 25% OFF</h3>
+            
+            <p class="expiry">📅 Válido até 14/04/2026</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article></div>
+    </section>
+    
+    <section id="ofertas">
+      <h2>🔥 Ofertas do Dia</h2>
+      <div class="grid">
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inkprinter-para-recarga-de-cartucho-de-impressora-hp--550ml--31385/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296553/image-d2a4738d490f4a218e777fd00cd7ffce.jpg?v=638967635755800000" alt="Tinta InkPrinter para Recarga de Cartucho de Impressora HP (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkPrinter para Recarga de Cartucho de Impressora HP (550ml)</h3>
+            <p class="price">R$ 91,76</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/refil-de-tinta-compativel-inkprinter-para-impressoras-epson-l606-l4150-l4160-l6161-l6171--550ml--31384/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296552/image-104fff65cdf1443280b6f9b270e54159.jpg?v=638967635137070000" alt="Refil de Tinta Compatível InkPrinter para Impressoras Epson L606, L4150, L4160, L6161, L61" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Refil de Tinta Compatível InkPrinter para Impressoras Epson L606, L4150, L4160, L6161, L61</h3>
+            <p class="price">R$ 104,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-corante-inkprinter-para-impressora-epson--800ml--31382/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296550/image-c2109c9da2ca4365b75f29eb794b3c87.jpg?v=638967632072400000" alt="Tinta Corante InkPrinter para Impressora Epson (800ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta Corante InkPrinter para Impressora Epson (800ml)</h3>
+            <p class="price">R$ 110,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inkprinter-para-recarga-de-cartucho-de-impressora-hp--4x250ml--31375/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296543/image-d6147a8d271841ceb3e12b3e74b2dd27.jpg?v=638967622335330000" alt="Tinta InkPrinter para Recarga de Cartucho de Impressora HP (4x250ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkPrinter para Recarga de Cartucho de Impressora HP (4x250ml)</h3>
+            <p class="price">R$ 139,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-corante-inkprinter-para-impressora-epson--1-250ml--31344/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296512/image-4895422b19d94ef39018bdef0ed4934f.jpg?v=638952837498230000" alt="Tinta Corante InkPrinter para Impressora Epson (1.250ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta Corante InkPrinter para Impressora Epson (1.250ml)</h3>
+            <p class="price">R$ 155,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inktec-para-recarga-de-cartucho-de-impressora-hp--4x100ml--31343/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296511/image-40c7a248ad7a40448345b51de0826f8a.jpg?v=638952836628800000" alt="Tinta InkTec para Recarga de Cartucho de Impressora HP (4x100ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkTec para Recarga de Cartucho de Impressora HP (4x100ml)</h3>
+            <p class="price">R$ 91,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-corante-inktec-para-impressora-epson--4x100ml--31342/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296510/image-bf50df0b4a564607afca890616f0af19.jpg?v=638952836620970000" alt="Tinta Corante InkTec para Impressora Epson (4x100ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta Corante InkTec para Impressora Epson (4x100ml)</h3>
+            <p class="price">R$ 96,61</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inktec-pigmentada-para-impressora-epson--4x100ml--31341/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296509/image-05bff8325b93411cafc5ef3005e0f382.jpg?v=638952836616330000" alt="Tinta InkTec Pigmentada para Impressora Epson (4x100ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkTec Pigmentada para Impressora Epson (4x100ml)</h3>
+            <p class="price">R$ 96,61</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inktec-para-recarga-de-cartucho-de-impressora-hp--550ml--31340/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296508/image-9670dc494cb047d595932aca6ea89db8.jpg?v=638952836613430000" alt="Tinta InkTec para Recarga de Cartucho de Impressora HP (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkTec para Recarga de Cartucho de Impressora HP (550ml)</h3>
+            <p class="price">R$ 105,34</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-corante-inktec-para-impressora-epson--550ml--31339/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296507/image-9e8c113768844e169dc6e2bee0804f16.jpg?v=638952836606000000" alt="Tinta Corante InkTec para Impressora Epson (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta Corante InkTec para Impressora Epson (550ml)</h3>
+            <p class="price">R$ 119,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inktec-pigmentada-para-impressora-epson--550ml--31338/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296506/image-4484b22c112843a9b7792b7966aa0709.jpg?v=638952836600500000" alt="Tinta InkTec Pigmentada para Impressora Epson (550ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkTec Pigmentada para Impressora Epson (550ml)</h3>
+            <p class="price">R$ 125,71</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/tinta-inktec-para-recarga-de-cartucho-de-impressora-hp--800ml--31337/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/296505/image-7e7fe2045bee4ecba185eafba399c03a.jpg?v=638952836596030000" alt="Tinta InkTec para Recarga de Cartucho de Impressora HP (800ml)" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Tinta InkTec para Recarga de Cartucho de Impressora HP (800ml)</h3>
+            <p class="price">R$ 138,60</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.toymania.com.br/hot-wheels-skate-com-tenis-hxl18/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://toymania.vteximg.com.br/arquivos/ids/1006899/Hot-Wheels-Skate-com-T-nis-Cool-Cassette---Mattel-0.jpg?v=638865569851230000" alt="Hot Wheels Skate com Tênis Cool Cassette - Mattel" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Hot Wheels Skate com Tênis Cool Cassette - Mattel</h3>
+            <p class="price">R$ 69,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/5fIHl2nSIwRh" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://malwee.vteximg.com.br/arquivos/ids/1067566/1000130645_02023_1.jpg?v=638877759777700000" alt="Calça Legging Feminina Bolso Para Bola De Tênis Em Malha Dry - ENFIM" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Legging Feminina Bolso Para Bola De Tênis Em Malha Dry - ENFIM</h3>
+            <p class="price">R$ 159,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/0nbLusliyFsB" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/231090/W5_1200G_front_alternativa.png?v=638428208067330000" alt="Roteador Wireless Intelbras Preto Wiforce W51200G – Bivolt 2" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Roteador Wireless Intelbras Preto Wiforce W51200G – Bivolt 2</h3>
+            <p class="price">R$ 237,10</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/gNxOT0tusY30" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/243139/rot.jpg?v=638670336123000000" alt="Roteador Intelbras Access Point Dual Band Alta Velocidade Branco AP 1350 AC-S – Bivolt" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Roteador Intelbras Access Point Dual Band Alta Velocidade Branco AP 1350 AC-S – Bivolt</h3>
+            <p class="price">R$ 898,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-800va-mono-entrada-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31602/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298815/image-0a16bbddaefe400ab4a0f6fdfdd498be.jpg?v=639012352552170000" alt="Nobreak Speed 800VA Mono Entrada e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 800VA Mono Entrada e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
+            <p class="price">R$ 472,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-2500va-mono-ent-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31599/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298807/image-dc68b48b264a4b14a69f0640adad0224.jpg?v=639012352541830000" alt="Nobreak Speed 2500VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 2500VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
+            <p class="price">R$ 1.333,40</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-650va-mono-entrada-e-saida-220v-3-tomadas-protecao-para--modem-roteador-games-e-cftv-31610/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298889/image-287612d2ecf545cd8c6133521a1c52cb.jpg?v=639012352591270000" alt="Nobreak Speed 650VA Mono Entrada e Saida 220V 3 Tomadas Proteção para  Modem, Roteador, Ga" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 650VA Mono Entrada e Saida 220V 3 Tomadas Proteção para  Modem, Roteador, Ga</h3>
+            <p class="price">R$ 306,80</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-1500va-mono-ent-e-saida-220v-9-tomadas-protecao-para--modem-roteador-games-e-cftv-31608/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298872/image-0d8a66bdaa1e46559403a56215e5c458.jpg?v=639012352582130000" alt="Nobreak Speed 1500VA Mono Ent e Saida 220V 9 tomadas Proteção para  Modem, Roteador, Games" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 1500VA Mono Ent e Saida 220V 9 tomadas Proteção para  Modem, Roteador, Games</h3>
+            <p class="price">R$ 914,50</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-2000va-mono-entr-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31600/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298809/image-42fd0dc8225348908a18f096e4aa0109.jpg?v=639012352542630000" alt="Nobreak Speed 2000VA Mono Entr e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 2000VA Mono Entr e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
+            <p class="price">R$ 1.091,50</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-650va-mono-entrada-e-saida-220v-6-tomadas-protecao-para--modem-roteador-games-e-cftv-31604/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298836/image-f93150b6f63f47c89f24a048758a1215.jpg?v=639012352561630000" alt="Nobreak Speed 650VA Mono Entrada e Saida 220V 6 Tomadas Proteção para  Modem, Roteador, Ga" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 650VA Mono Entrada e Saida 220V 6 Tomadas Proteção para  Modem, Roteador, Ga</h3>
+            <p class="price">R$ 422,44</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-2000va-mono-ent-e-saida-220v-protecao-para--modem-roteador-games-e-cftv-31601/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298811/image-9d9f5945576548709e4d02ed4b0d756f.jpg?v=639012352546700000" alt="Nobreak Speed 2000VA Mono Ent e Saida 220V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 2000VA Mono Ent e Saida 220V Proteção para  Modem, Roteador, Games e Cftv</h3>
+            <p class="price">R$ 472,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-1200va-mono-ent-e-saida-120v-protecao-para--modem-roteador-games-e-cftv-31609/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298881/image-0cfe3447ded14388abf64ff20c1a108d.jpg?v=639012352586730000" alt="Nobreak Speed 1200VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 1200VA Mono Ent e Saida 120V Proteção para  Modem, Roteador, Games e Cftv</h3>
+            <p class="price">R$ 628,94</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-2500va-bivolt-ent-120-220v-saida-120v-protecao-para--modem-roteador-games-e-cftv-31607/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298866/image-0d8ab9f17504462e85991ee5c4333d88.jpg?v=639012352576870000" alt="Nobreak Speed 2500VA Bivolt Ent 120/220v Saida 120v Proteção para  Modem, Roteador, Games " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 2500VA Bivolt Ent 120/220v Saida 120v Proteção para  Modem, Roteador, Games </h3>
+            <p class="price">R$ 1.368,80</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/nobreak-speed-1200va-bivolt-ent-115v-220v-saida-115v-protecao-para--modem-roteador-games-e-cftv-31606/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/298854/image-90d3ef69138b4677bd1da5c71b0cd4f3.jpg?v=639012352571530000" alt="Nobreak Speed 1200VA Bivolt Ent 115v-220v Saida 115v Proteção para  Modem, Roteador, Games" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Nobreak Speed 1200VA Bivolt Ent 115v-220v Saida 115v Proteção para  Modem, Roteador, Games</h3>
+            <p class="price">R$ 649,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/kcA0FwcU-X3l" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/241735/17.png.png?v=638911476494870000" alt="Ar Condicionado Split Hi Wall Philco Inverter 24000 BTU/h Frio Monofásico PAC24000IFM15 - " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Hi Wall Philco Inverter 24000 BTU/h Frio Monofásico PAC24000IFM15 - </h3>
+            <p class="price">R$ 4.791,94</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/GcDZL2WZpSEJ" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/231804/Kit-9K.jpg?v=638911480851730000" alt="Ar Condicionado Split Hi Wall Inverter Gree G-Top Auto 12000 BTU/h Frio CB574N09200 – 220 " loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Hi Wall Inverter Gree G-Top Auto 12000 BTU/h Frio CB574N09200 – 220 </h3>
+            <p class="price">R$ 2.728,30</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/VY999OzhSIZ0" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/233319/Split-Vix-.jpg?v=638536270244000000" alt="Ar Condicionado Split Inverter Vix 24000 BTUs Frio AS-24TW2RBBDK03 – 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Inverter Vix 24000 BTUs Frio AS-24TW2RBBDK03 – 220 Volts</h3>
+            <p class="price">R$ 3.693,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/10tKQfG3TbN5" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/228349/Split-Voice.jpg?v=638911478843700000" alt="Ar Condicionado Split Hi Wall R32 LG Dual Inverter Voice +AI 12000 BTU/h Frio S3-Q12JA31K–" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Hi Wall R32 LG Dual Inverter Voice +AI 12000 BTU/h Frio S3-Q12JA31K–</h3>
+            <p class="price">R$ 2.998,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/9owC7sOnvcbu" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/247266/foto2--1-.jpg.jpg?v=638804109125970000" alt="Ar Condicionado Split Vix 9000 BTU/h Frio AS-09CR2SLDDK02 – 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Vix 9000 BTU/h Frio AS-09CR2SLDDK02 – 220 Volts</h3>
+            <p class="price">R$ 1.786,52</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/8BtpaoXz3AO4" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/232023/kit.jpg?v=638863960054470000" alt="Ar Condicionado Split Dual Inverter 24000 BTUs LG Voice +AI Frio S3-Q24K231B 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Dual Inverter 24000 BTUs LG Voice +AI Frio S3-Q24K231B 220 Volts</h3>
+            <p class="price">R$ 5.108,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/yEO0zZQNlN2W" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/230631/Kit-oficial.jpg?v=638400836599700000" alt="Ar Condicionado Split Cassete Inverter Carrier Connect 36000 BTU/h Frio R32 Monofásico 40K" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Cassete Inverter Carrier Connect 36000 BTU/h Frio R32 Monofásico 40K</h3>
+            <p class="price">R$ 12.598,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/Nic5JO7AqaeL" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/246155/181038-600-auto.jpg.jpg?v=638911482684070000" alt="Ar Condicionado Split Hi Wall Inverter Philco 12000 BTU/h Frio PAC12FC – 220 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Hi Wall Inverter Philco 12000 BTU/h Frio PAC12FC – 220 Volts</h3>
+            <p class="price">R$ 2.598,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/SJth2V45Mlt9" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/232442/Split-Elgin.jpg?v=638495553577930000" alt="Ar Condicionado Split Hi Wall Inverter Elgin Eco Dream 12000 BTU/h Quente e Frio 45HIQI12C" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Hi Wall Inverter Elgin Eco Dream 12000 BTU/h Quente e Frio 45HIQI12C</h3>
+            <p class="price">R$ 2.988,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/cIovp1h46az6" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/245860/ON-OFF-9-E-12-K-FONTAINE.jpg.jpg?v=638803245934370000" alt="Ar Condicionado Split 12.000 Btus Fontaine Frio FCST12F - 127 Volts" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split 12.000 Btus Fontaine Frio FCST12F - 127 Volts</h3>
+            <p class="price">R$ 2.387,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/-i9NIrrgDCYx" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/232065/Kit.jpg?v=638642541620870000" alt="Ar Condicionado Split Hi Wall Inverter Springer Midea Xtreme Save Connect 12000 BTU/h Quen" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Hi Wall Inverter Springer Midea Xtreme Save Connect 12000 BTU/h Quen</h3>
+            <p class="price">R$ 3.110,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/xvmlaHBfourF" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://friopecas.vteximg.com.br/arquivos/ids/229061/Kit-Philco--.jpg?v=638942345279100000" alt="Ar Condicionado Split Inverter Philco Eco 36.000 BTUs Quente e Frio Monofásico PAC36000IQF" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Ar Condicionado Split Inverter Philco Eco 36.000 BTUs Quente e Frio Monofásico PAC36000IQF</h3>
+            <p class="price">R$ 7.998,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/hB89IkgbOj5R" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/251215/W243JACWS684_WNSL_1.jpg.jpg?v=638796437481100000" alt="Jaqueta Jeans Estonada Marrom" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Jeans Estonada Marrom</h3>
+            <p class="price">R$ 419,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/074pmSRofjTq" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/163831/jaqueta-jeans-truker-puidos-M223JACDW221_JBLK_1.jpg?v=638986391090330000" alt="Jaqueta Jeans Truker Puidos Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Jeans Truker Puidos Preto</h3>
+            <p class="price">R$ 599,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/MtHeTLjhh3g6" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/158996/jaqueta-jeans-guess-trucker-M213JACDWY73_CLAR_1.jpg?v=639014243232470000" alt="Jaqueta Jeans Guess Trucker Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Jeans Guess Trucker Azul Claro</h3>
+            <p class="price">R$ 499,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/UjmoMWYQFLBI" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/241120/jaqueta-matelasse-pu-M4BL28WGJ60_G1FE_1.jpg?v=638846482625000000" alt="Jaqueta Matelassê PU Off White" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Matelassê PU Off White</h3>
+            <p class="price">R$ 719,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/AxeCJZv0RUOi" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/159034/jaqueta-jeans-gola-pelo-guess-M213JACDWY75_INTER_1.jpg?v=639009696203800000" alt="Jaqueta Jeans Gola Pelo Guess Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Jeans Gola Pelo Guess Azul</h3>
+            <p class="price">R$ 359,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/ju2I8Qhna8Fr" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/251122/jaqueta-guess-pelo-sintetico-W0BL0NWDCH0_G8K2_1.jpg?v=638796276989100000" alt="Jaqueta Pelo Sintético Verde Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Pelo Sintético Verde Escuro</h3>
+            <p class="price">R$ 999,90</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/fmvi-hKpaMRH" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/202219/W4GL21WFWW2_F0AJ_1.jpg?v=638989971746100000" alt="Jaqueta Eco Tweed E Jeans Branco" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Eco Tweed E Jeans Branco</h3>
+            <p class="price">R$ 599,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/gNhjypDrQ2ah" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/201431/W3GL09WFCJ0_JBLK_1.jpg?v=639008014707070000" alt="Jaqueta Bomber Renda Guess Preto" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Bomber Renda Guess Preto</h3>
+            <p class="price">R$ 599,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/BxpC82IDaFEn" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/277765/jaqueta-jeans-guess-trucker-W231JACDW682_CLAR_1.jpg?v=638996815149570000" alt="Jaqueta Jeans Guess Trucker Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Jeans Guess Trucker Azul Claro</h3>
+            <p class="price">R$ 599,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/25NN0U47ENpa" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/167097/jaqueta-trucker-sarja-guess-M231JACDW702_PEOY_1.jpg?v=639009805833500000" alt="Jaqueta Trucker Sarja Guess Off White" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Trucker Sarja Guess Off White</h3>
+            <p class="price">R$ 599,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/Ql70yzyQZWmi" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/173149/jaqueta-nylon-puffer-camuflada-guess-M2BL25WEZ60_P7CU_1.jpg?v=638651251812770000" alt="Jaqueta Nylon Puffer Camuflada Guess Verde Militar" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Nylon Puffer Camuflada Guess Verde Militar</h3>
+            <p class="price">R$ 959,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/KRosOCQnYQgg" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://malwee.vteximg.com.br/arquivos/ids/1016596/1000006668_02023_1.jpg?v=638791378641030000" alt="Jaqueta Básica Masculina Com Capuz Em Moletom Flanelado" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Jaqueta Básica Masculina Com Capuz Em Moletom Flanelado</h3>
+            <p class="price">R$ 169,00</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/5d-YoL-NxxI3" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://fken.vteximg.com.br/arquivos/ids/234140/Botina-de-Seguranca-Monod-Sem-Biqueira-N°38-Calcados-Cartom.jpg?v=638980344201930000" alt="BOTINA DE ELÁSTICO CARTOM CALÇADOS SEM BIQUEIRA" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>BOTINA DE ELÁSTICO CARTOM CALÇADOS SEM BIQUEIRA</h3>
+            <p class="price">R$ 39,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://www.allever.com.br/conjunto-calca-e-japona-pvc-amarelo-com-capuz-tam--g-7099000001--capseg-28347/p" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://allever.vteximg.com.br/arquivos/ids/282116/image-b96028f712c149a8a137a2a7eb1dd87a.jpg?v=638720536441030000" alt="Conjunto Calça e Japona Pvc Amarelo Com Capuz Tam. G 7099000001- CapSeg" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Conjunto Calça e Japona Pvc Amarelo Com Capuz Tam. G 7099000001- CapSeg</h3>
+            <p class="price">R$ 43,36</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/0-1A7irjlhru" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/234466/calca-jeans-guess-skinny-M243SKNDW52F_ESC_1.jpg?v=638749846606770000" alt="Calça Jeans Skinny Azul Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Jeans Skinny Azul Escuro</h3>
+            <p class="price">R$ 279,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/cp-XCEo1DyH2" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/254710/calca-jeans-flare-mid-rise-W241MFLDW30F_CLAR_1.jpg?v=638829343365630000" alt="Calça Jeans Flare Mid Rise Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Jeans Flare Mid Rise Azul Claro</h3>
+            <p class="price">R$ 229,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/5EOFPykwOVOd" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/207186/cal-C3-A7a-sarja-slim-tela-M243SLMWS02D_SLTP_1.jpg?v=638784468999900000" alt="Calça Sarja Slim Cinza" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Sarja Slim Cinza</h3>
+            <p class="price">R$ 299,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/0kOqbKN26AAL" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/254895/calca-jeans-guess-mom-W243MOMDW63F_INTER_1.jpg?v=638829373876270000" alt="Calça Mom Jeans Rasgos Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Mom Jeans Rasgos Azul</h3>
+            <p class="price">R$ 239,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/asmhrtyhPa4L" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/235965/calca-jeans-guess-regular-stright-M243SLMDW50F_ESC_1.jpg?v=638780904166170000" alt="Calça Jeans Regular Straight Azul Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Jeans Regular Straight Azul Escuro</h3>
+            <p class="price">R$ 279,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/RoYgd-OeAHpx" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/179277/cal-C3-A7a-jeans-slim-straight-M241SLMDW204_CLAR_1.jpg?v=638651765327470000" alt="Calça Jeans Slim Straight Azul Claro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Jeans Slim Straight Azul Claro</h3>
+            <p class="price">R$ 279,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/c3hA1rpxoxwK" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/198703/cal-C3-A7a-jeans-wide-leg-pu-C3-ADdos-W241WIDDW276_INTER_1.jpg?v=638888054293770000" alt="Calça Jeans Wide Leg Puídos Azul" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Jeans Wide Leg Puídos Azul</h3>
+            <p class="price">R$ 279,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="https://lmdee.link/Eg6GWbvPEshA" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="card-img"><img src="https://guessbr.vteximg.com.br/arquivos/ids/249708/calca-jeans-skinny-botoes-laterais-W241SKNDW21F_ESC_1.jpg?v=638829378178070000" alt="Calça Jeans Skinny Botões Laterais Azul Escuro" loading="lazy" onerror="this.closest('.card-img').innerHTML='<span class=no-img>📦</span>'"></div>
+          <div class="card-body">
+            <h3>Calça Jeans Skinny Botões Laterais Azul Escuro</h3>
+            <p class="price">R$ 279,99</p>
+            <span class="btn">🛒 Ver oferta</span>
+          </div>
+        </a>
+      </article></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Terminal de Ofertas</p>
+    <p>Alguns links são de afiliados. Ao comprar você apoia o canal sem pagar a mais.</p>
+    <p>Siga no Telegram: <a href="https://t.me/terminaldeofertas" target="_blank">@terminaldeofertas</a></p>
+  </footer>
 </body>
 </html>
