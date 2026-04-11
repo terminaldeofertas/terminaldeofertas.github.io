@@ -443,6 +443,7 @@ def build_html(
   <meta name="description" content="As melhores ofertas e cupons de desconto selecionados automaticamente. Promoções de celulares, notebooks, tênis, perfumes e muito mais.">
   <meta name="robots" content="index, follow">
   <meta name="lomadee" content="2324685">
+  <meta name="google-adsense-account" content="ca-pub-5535939262663776">
   <meta property="og:title"       content="Terminal de Ofertas">
   <meta property="og:description" content="As melhores ofertas do dia selecionadas para você.">
   <meta property="og:type"        content="website">
