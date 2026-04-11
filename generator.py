@@ -358,6 +358,8 @@ CSS = """
   header p  { color: var(--muted); margin-top: .4rem; }
   .logo { width: 96px; height: 96px; border-radius: 20px; margin-bottom: .75rem; object-fit: cover; }
   .stamp    { display: inline-block; margin-top: .8rem; font-size: .75rem; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: .2rem .8rem; }
+  .tg-link  { display: inline-block; margin-top: .75rem; font-size: .85rem; color: #fff; background: #229ED9; border-radius: 20px; padding: .35rem 1rem; text-decoration: none; font-weight: 600; transition: background .15s; }
+  .tg-link:hover { background: #1a8bbf; }
 
   main { max-width: 1280px; margin: 0 auto; padding: 2rem 1rem 4rem; }
   section { margin-bottom: 3rem; }
@@ -452,6 +454,7 @@ def build_html(
     <img src="logo.jpg" alt="Terminal de Ofertas" class="logo">
     <h1>Terminal de Ofertas</h1>
     <p>As melhores promoções selecionadas automaticamente</p>
+    <a href="https://t.me/terminaldeofertas" target="_blank" class="tg-link">📢 Siga no Telegram</a>
     <span class="stamp">Atualizado em {now} &bull; {total} ofertas</span>
   </header>
   <main>
