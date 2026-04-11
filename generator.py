@@ -444,6 +444,7 @@ def build_html(
   <meta name="robots" content="index, follow">
   <meta name="lomadee" content="2324685">
   <meta name="google-adsense-account" content="ca-pub-5535939262663776">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5535939262663776" crossorigin="anonymous"></script>
   <meta property="og:title"       content="Terminal de Ofertas">
   <meta property="og:description" content="As melhores ofertas do dia selecionadas para você.">
   <meta property="og:type"        content="website">
