@@ -3,6 +3,9 @@ set -e
 
 cd "$(dirname "$0")"
 
+echo "=== Atualizando repositório ==="
+git pull origin main
+
 echo "=== Gerando site ==="
 python3 generator.py
 
