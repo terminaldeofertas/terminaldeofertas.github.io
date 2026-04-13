@@ -11,7 +11,8 @@ python3 generator.py
 
 echo ""
 echo "=== Publicando no GitHub Pages ==="
-git add index.html sitemap.xml
+git add index.html sitemap.xml p/
+git add indicacao-*.html 2>/dev/null || true
 git diff --cached --quiet && echo "Nenhuma alteração." || (
   git commit -m "chore: atualiza ofertas $(date '+%d/%m/%Y %H:%M')"
   git push
