@@ -433,6 +433,14 @@ def build_auto_product_page(
   <meta name="robots" content="index, follow">
   <meta name="google-adsense-account" content="ca-pub-5535939262663776">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5535939262663776" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1PYFX64R8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1PYFX64R8');
+  </script>
   <meta property="og:title"   content="{title_esc} — Terminal de Ofertas">
   <meta property="og:image"   content="{img}">
   <meta property="og:type"    content="product">
@@ -609,6 +617,14 @@ def build_html(
   <meta name="lomadee" content="2324685">
   <meta name="google-adsense-account" content="ca-pub-5535939262663776">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5535939262663776" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1PYFX64R8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1PYFX64R8');
+  </script>
   <meta property="og:title"       content="Terminal de Ofertas">
   <meta property="og:description" content="As melhores ofertas do dia selecionadas para você.">
   <meta property="og:type"        content="website">
@@ -744,6 +760,14 @@ def build_recommendation_page(rec: dict) -> str:
   <meta name="robots" content="index, follow">
   <meta name="google-adsense-account" content="ca-pub-5535939262663776">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5535939262663776" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1PYFX64R8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1PYFX64R8');
+  </script>
   <meta property="og:title"       content="{title} — Terminal de Ofertas">
   <meta property="og:description" content="Indicação e análise: {title}.">
   <meta property="og:type"        content="article">
